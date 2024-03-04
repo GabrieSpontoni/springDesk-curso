@@ -2,8 +2,15 @@ package tech.jamersondev.springdesk.model;
 
 import tech.jamersondev.springdesk.Enums.Perfil;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public abstract class Pessoa {
 
+    @Id
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     private Integer id;
     private String nome;
     private String email;

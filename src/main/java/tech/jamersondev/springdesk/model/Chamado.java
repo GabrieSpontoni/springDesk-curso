@@ -3,10 +3,16 @@ package tech.jamersondev.springdesk.model;
 import tech.jamersondev.springdesk.Enums.Prioridade;
 import tech.jamersondev.springdesk.Enums.Status;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.time.LocalDate;
 
+@Entity
 public class Chamado {
 
+    @Id
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     private Integer id;
     private String titulo;
     private LocalDate dataAbertura = LocalDate.now();
