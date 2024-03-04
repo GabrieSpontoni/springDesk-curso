@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Tecnico extends Pessoa{
 
-    @OneToMany
+    @OneToMany(mappedBy = "tecnico")
     private List<Chamado> chamados = new ArrayList<>();
 
 

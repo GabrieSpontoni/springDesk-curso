@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 public class Cliente extends Pessoa {
-    @OneToMany
+    @OneToMany(mappedBy = "cliente")
     private List<Chamado> chamados = new ArrayList<>();
 
     public List<Chamado> getChamados() {

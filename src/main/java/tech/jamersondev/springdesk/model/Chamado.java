@@ -3,9 +3,7 @@ package tech.jamersondev.springdesk.model;
 import tech.jamersondev.springdesk.Enums.Prioridade;
 import tech.jamersondev.springdesk.Enums.Status;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -20,6 +18,14 @@ public class Chamado {
     private String observacao;
     private Status status;
     private Prioridade prioridade;
+
+    @ManyToOne
+    @JoinColumn(name = "cliente_id_fk")
+    private Cliente cliente;
+
+    @ManyToOne
+    @JoinColumn(name = "tecnico_id_fk")
+    private Tecnico tecnico;
 
     public Chamado(Integer id, String titulo, LocalDate dataAbertura, LocalDate dataFechamento, String observacao, Status status, Prioridade prioridade) {
         this.id = id;
@@ -85,5 +91,21 @@ public class Chamado {
 
     public void setPrioridade(Prioridade prioridade) {
         this.prioridade = prioridade;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Tecnico getTecnico() {
+        return tecnico;
+    }
+
+    public void setTecnico(Tecnico tecnico) {
+        this.tecnico = tecnico;
     }
 }
