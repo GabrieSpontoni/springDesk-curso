@@ -46,6 +46,19 @@ public class ClienteController {
 
     }
 
+    @GetMapping("list-clientes")
+    public ModelAndView listClientes() {
+        ModelAndView mv = new ModelAndView("cliente/list-clientes");
+        mv.addObject("clientes", clienteRepo.findAll());
+        return mv;
+    }
+
+    @GetMapping("excluir/{id}")
+    public ModelAndView deletar(@PathVariable("id") Integer id) {
+        clienteRepo.deleteById(id);
+        return home();
+    }
+
     @GetMapping("home")
     public ModelAndView home() {
         ModelAndView mv = new ModelAndView("home/index");

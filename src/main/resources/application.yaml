@@ -5,8 +5,9 @@ spring:
       password: postgres
     jpa:
       show-sql: true
-      hibernate:
-        ddl-auto: create
+#      Toda vez que a aplicação for iniciada, o hibernate irá criar as tabelas no banco de dados e irá dropar as tabelas que já existem.
+#      hibernate:
+#        ddl-auto: create
       properties:
         hibernate:
           dialect: org.hibernate.dialect.PostgreSQLDialect
