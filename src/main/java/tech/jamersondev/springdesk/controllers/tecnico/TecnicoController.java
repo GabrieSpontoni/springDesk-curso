@@ -53,6 +53,34 @@ public class TecnicoController {
         return mv;
     }
 
+    @GetMapping("editar/{id}")
+    public ModelAndView editarTecnico(@PathVariable Integer id) {
+        ModelAndView mv = new ModelAndView("tecnico/editar");
+        mv.addObject("usuario", tecRepo.findById(id));
+        mv.addObject("perfils", Perfil.values());
+        return mv;
+    }
+
+    @PostMapping("editar-tecnico")
+    public ModelAndView editarTecnico(@ModelAttribute Tecnico tecnico, @RequestParam(name = "file", required = false) MultipartFile imagem) {
+        ModelAndView mv = new ModelAndView("tecnico/editar");
+        mv.addObject("usuario", tecnico);
+        try {
+            if (imagem != null && !imagem.isEmpty()) {
+                if (UploadUtil.fazerUploadImagem(imagem)) {
+                    tecnico.setImagem(imagem.getOriginalFilename());
+                }
+            }
+            tecRepo.save(tecnico);
+            System.out.println("Cliente salvo com sucesso" + tecnico.getNome() + " " + tecnico.getImagem());
+            return listTecnicos();
+        } catch (Exception e) {
+            mv.addObject("erro", "Erro ao fazer upload da imagem: " + e.getMessage());
+            System.out.println("Erro ao fazer upload da imagem: " + e.getMessage());
+            return mv;
+        }
+    }
+
     @GetMapping("home")
     public ModelAndView home() {
         ModelAndView mv = new ModelAndView("home/index");
