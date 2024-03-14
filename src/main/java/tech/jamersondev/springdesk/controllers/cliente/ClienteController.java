@@ -53,6 +53,35 @@ public class ClienteController {
         return mv;
     }
 
+    @GetMapping("/editar/{id}")
+    public ModelAndView editar(@PathVariable("id") Integer id) {
+        ModelAndView mv = new ModelAndView("cliente/editar");
+        mv.addObject("perfils", Perfil.values());
+        mv.addObject("usuario", clienteRepo.findById(id));
+        return mv;
+    }
+
+    @PostMapping("editar-cliente")
+    public ModelAndView editar(@ModelAttribute Cliente cliente, @RequestParam(name = "file", required = false) MultipartFile imagem) {
+        ModelAndView mv = new ModelAndView("cliente/editar");
+        mv.addObject("usuario", cliente);
+
+        try {
+            if (imagem != null && !imagem.isEmpty()) {
+                if (UploadUtil.fazerUploadImagem(imagem)) {
+                    cliente.setImagem(imagem.getOriginalFilename());
+                }
+            }
+            clienteRepo.save(cliente);
+            System.out.println("Cliente salvo com sucesso" + cliente.getNome() + " " + cliente.getImagem());
+            return home();
+        } catch (Exception e) {
+            mv.addObject("erro", "Erro ao fazer upload da imagem: " + e.getMessage());
+            System.out.println("Erro ao fazer upload da imagem: " + e.getMessage());
+            return mv;
+        }
+    }
+
     @GetMapping("excluir/{id}")
     public ModelAndView deletar(@PathVariable("id") Integer id) {
         clienteRepo.deleteById(id);
