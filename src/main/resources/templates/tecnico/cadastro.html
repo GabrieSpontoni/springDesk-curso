@@ -1,75 +1,95 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{fragments/head :: headImports}"></head>
-<style>
-    .lblTecnico{font-weight: bold;}
+	<head th:replace="~{fragments/head :: headImports}"></head>
+	<style>
+		.lblTecnico{font-weight: bold;}
 </style>
-<body>
-<div class="container-scroller">
-    <!-- partial:partials/_navbar.html -->
-    <nav th:replace="~{fragments/navbar :: navbarImports}"></nav>
-    <!-- partial -->
-    <div class="container-fluid page-body-wrapper">
-        <!-- partial:partials/_sidebar.html -->
-        <nav th:replace="~{fragments/sidebar :: sidebarImports}"></nav>
-        <!-- partial -->
-        <div class="main-panel">
-            <div class="content-wrapper">
+	<body>
+		<div class="container-scroller">
+			<!-- partial:partials/_navbar.html -->
+			<nav th:replace="~{fragments/navbar :: navbarImports}"></nav>
+			<!-- partial -->
+			<div class="container-fluid page-body-wrapper">
+				<!-- partial:partials/_sidebar.html -->
+				<nav th:replace="~{fragments/sidebar :: sidebarImports}"></nav>
+				<!-- partial -->
+				<div class="main-panel">
+					<div class="content-wrapper">
 
-                <!-- cabeçalho boas vindas -->
-                <div class="row">
-                    <div class="col-md-12 grid-margin">
-                        <div class="row">
-                            <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                                <h3 class="font-weight-bold">Cadastro de Técnicos</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- conteúdo principal -->
-                <form enctype="multipart/form-data" method="post" th:action="@{/tecnico/cadastro-tecnico}"
-                      th:object="${usuario}">
-                    <div class="row">
-                        <input th:name="${_csrf?.parameterName}" th:value="${_csrf?.token}" type="hidden">
-                        <!-- field nome -->
-                        <div class="form-group col-4">
-                            <label class="lblTecnico" for="nome">Nome:</label>
-                            <input class="form-control" id="nome" placeholder="Nome: " th:field="*{nome}" type="text">
-                        </div>
-                        <!-- field e-mail -->
-                        <div class="form-group col-4">
-                            <label class="lblTecnico" for="email">E-Mail:</label>
-                            <input autocomplete="off" class="form-control" id="email" placeholder="E-Mail: "
-                                   th:field="*{email}" type="email">
-                        </div>
+						<!-- cabeçalho boas vindas -->
+						<div class="row">
+							<div class="col-md-12 grid-margin">
+								<div class="row">
+									<div class="col-12 col-xl-8 mb-4 mb-xl-0">
+										<h3 class="font-weight-bold">Cadastro de Técnicos</h3>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- conteúdo principal -->
+						<form enctype="multipart/form-data" method="post"
+							th:action="@{/tecnico/cadastro-tecnico}"
+							th:object="${usuario}">
+							<div class="row">
+								<input th:name="${_csrf?.parameterName}" th:value="${_csrf?.token}"
+									type="hidden">
+								<!-- field nome -->
+								<div class="form-group col-4">
+									<label class="lblTecnico" for="nome">Nome:</label>
+									<input class="form-control" id="nome" placeholder="Nome: "
+										th:field="*{nome}" type="text">
+								</div>
+								<!-- field e-mail -->
+								<div class="form-group col-4">
+									<label class="lblTecnico" for="email">E-Mail:</label>
+									<input autocomplete="off" class="form-control" id="email"
+										placeholder="E-Mail: "
+										th:field="*{email}" type="email">
+								</div>
 
-                        <div class="form-group col-4">
-                            <label class="lblTecnico" for="senha">Senha:</label>
-                            <input class="form-control" id="senha" placeholder="Senha: " th:field="*{senha}"
-                                   type="password">
-                        </div>
+								<div class="form-group col-4">
+									<label class="lblTecnico" for="senha">Senha:</label>
+									<input class="form-control" id="senha" placeholder="Senha: "
+										th:field="*{senha}"
+										type="password">
+								</div>
 
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-6">
-                            <label class="lblTecnico" for="arquivo">Imagem Perfil:</label>
-                            <input class="form-control" id="arquivo" name="file" placeholder="Senha: " type="file">
-                        </div>
+							</div>
+							<div class="row">
+								<div class="form-group col-6">
+									<label class="lblTecnico" for="arquivo">Imagem Perfil:</label>
+									<input class="form-control" id="arquivo" name="file"
+										placeholder="Senha: " type="file">
+								</div>
 
-                        <div class="form-group col-6">
-                            <label class="lblTecnico" for="senha">Perfil:</label>
-                            <select class="form-control" id="" name="" th:field="*{perfil}">
-                                <option th:each="perfil : ${perfils}" th:text="${perfil}" th:value="${perfil}"></option>
-                            </select>
-                        </div>
-                    </div>
+								<div class="form-group col-6">
+									<label class="lblTecnico" for="senha">Perfil:</label>
+									<select class="form-control" id name th:field="*{perfil}">
+										<option th:each="perfil : ${perfils}" th:text="${perfil}"
+											th:value="${perfil}"></option>
+									</select>
+								</div>
+							</div>
 
-                    <button class="btn btn-success btn-rounded mt-4" type="submit">SALVAR INFORMAÇÕES</button>
-                </form>
+							<button class="btn btn-success btn-rounded mt-4" type="submit">SALVAR
+								INFORMAÇÕES</button>
+						</form>
 
-            </div>
-        </div>
+					</div>
+				</div>
 
-</body>
-</html>
+				<!-- plugins:js -->
+				<script src="../../vendors/js/vendor.bundle.base.js"></script>
+				<!-- End plugin js for this page -->
+				<!-- inject:js -->
+				<script src="../../js/off-canvas.js"></script>
+				<script src="../../js/template.js"></script>
+				<script src="../../js/hoverable-collapse.js"></script>
+				<!-- endinject -->
+				<!-- Custom js for this page-->
+				<script src="../../js/dashboard.js"></script>
+				<!-- End custom js for this page-->
+
+			</body>
+		</html>

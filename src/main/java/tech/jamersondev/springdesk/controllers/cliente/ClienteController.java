@@ -17,7 +17,7 @@ public class ClienteController {
     @Autowired
     private ClienteRepository clienteRepo;
 
-    @GetMapping("cadastro")
+    @GetMapping("cadastro-cliente")
     public ModelAndView cadastro(Cliente cliente) {
         ModelAndView mv = new ModelAndView("cliente/cadastro");
         mv.addObject("usuario", new Cliente());

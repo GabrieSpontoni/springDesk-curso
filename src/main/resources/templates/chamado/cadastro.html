@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="~{fragments/head :: headImports}"></head>
+<body>
+	<div class="container-scroller">
+		<!-- partial:partials/_navbar.html -->
+		<nav th:replace="~{fragments/navbar :: navbarImports}"></nav>
+		<!-- partial -->
+		<div class="container-fluid page-body-wrapper">
+			<!-- partial:partials/_sidebar.html -->
+			<nav th:replace="~{fragments/sidebar :: sidebarImports}"></nav>
+			<!-- partial -->
+			<div class="main-panel">
+				<div class="content-wrapper">
+						<!-- cabeçalho boas vindas -->
+						<div class="row">
+							<div class="col-md-12 grid-margin">
+								<div class="row">
+									<div class="col-12 col-xl-8 mb-4 mb-xl-0">
+										<h3 class="font-weight-bold">Cadastro de Chamados</h3>
+										</div>
+										</div>
+										</div>
+										</div>
+										<!-- conteúdo principal -->
+						<form enctype="multipart/form-data" method="post" th:action="@{/chamado/cadastro-chamado}" th:object="${chamado}">
+							<div class="row">
+								<div class="form-group col-3">
+									<label>
+										Título
+									</label>
+									<input autocomplete="off" class="form-control" id="titulo" placeholder="Título do chamado" th:field="*{titulo}"
+										type="text">
+								</div>
+								<div class="form-group col-3">
+									<label>Status</label>
+
+									<select class="form-control" id="status" name th:field="*{status}">
+										<option th:each="status : ${status}" th:text="${status}" th:value="${status}">
+										</option>
+									</select>
+									
+									</div>
+
+								<div class="form-group col-3">
+									<label>Prioridade</label>
+
+									<select class="form-control" id="prioridade" name th:field="*{prioridade}">
+										<option th:each="prioridade : ${prioridade}" th:text="${prioridade}" th:value="${prioridade}"></option>
+									</select>
+									</div>
+								<div class="form-group col-3">
+									<label>
+										Observação
+									</label>
+									<input autocomplete="off" class="form-control" id="observacao" placeholder="Observação do chamado"
+										th:field="*{observacao}" type="text">
+								</div>
+							</div>
+
+							<button class="btn btn-success btn-rounded mt-4" type="submit">SALVAR
+								INFORMAÇÕES
+							</button>
+							</form>
+					</div>
+					</div>
+
+				<!-- plugins:js -->
+				<!-- plugins:js -->
+				<script src="vendors/js/vendor.bundle.base.js"></script>
+				<!-- End plugin js for this page -->
+				<!-- inject:js -->
+				<script src="js/off-canvas.js"></script>
+				<script src="js/template.js"></script>
+				<script src="js/hoverable-collapse.js"></script>
+				<!-- endinject -->
+				<!-- Custom js for this page-->
+				<script src="js/dashboard.js"></script>
+				<!-- End custom js for this page-->
+			</body>
+
+		</html>

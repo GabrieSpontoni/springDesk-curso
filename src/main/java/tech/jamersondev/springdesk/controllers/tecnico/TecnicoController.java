@@ -17,7 +17,7 @@ public class TecnicoController {
     @Autowired
     private TecnicoRepository tecRepo;
 
-    @GetMapping("cadastro")
+    @GetMapping("cadastro-tecnico")
     public ModelAndView cadastro(Tecnico tecnico) {
         ModelAndView mv = new ModelAndView("tecnico/cadastro");
         mv.addObject("usuario", new Tecnico());
